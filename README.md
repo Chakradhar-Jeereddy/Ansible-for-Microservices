@@ -20,3 +20,4 @@ ansible -i inventory-sample ansible-node.roboshop.internal  -b -m systemd -a "na
 In Latest ansible version collection concept is introduced.
 
 Ansible playbook is written in markup language, it helps in sharing information between systems, also between users and systems
+xhml,json and yaml
