@@ -13,12 +13,12 @@ fi
 echo "GET Image ID"
 AMI_ID=$(aws ec2 describe-images --filters \
 "Name=name, Values=Centos-7-DevOps-Practice" | jq .Images[].ImageId | sed -e 's/"//g') &>>${LOG_FILE}
-StatCheck $?
+
 
 echo "Get security group"
 SG_ID=$(aws ec2 describe-security-groups --filters \
 "Name=group-name, Values=robo-allow" | jq .SecurityGroups[].GroupId | sed -s 's/"//g') &>>${LOG_FILE}
-StatCheck $?
+
 
 create_ec2() {
   echo "Create spot instance"
@@ -28,11 +28,9 @@ create_ec2() {
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name, Value=${COMPONENT}}]" \
     --instance-market-options "MarketType=spot,SpotOptions={SpotInstanceType=persistent,InstanceInterruptionBehavior=stop}" \
     --security-group-ids $SG_ID | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
-  StatCheck $?
   echo "Create DNS record"
   sed -e "s/component/${COMPONENT}/" -e "s/PRIVATE_IP/${PRIVATE_IP}/" dnsrecord.json >/tmp/record.json
   aws route53 change-resource-record-sets --hosted-zone-id ${Zone_ID} --change-batch file:///tmp/record.json | jq &>>${LOG_FILE}
-  StatCheck $?
 }
 
 if [ "$1" == "all" ]; then
