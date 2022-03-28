@@ -1,0 +1,26 @@
+192.168.0.10
+sample.roboshop.internal
+To specify range
+192.169.0.[10-20]
+
+#Institute (Company), USA (Multi regions), INDIA (Multi Regions)
+#web , app, db
+
+#Naming convention
+COUNTRYCODE-DCNO-APPTYPE-PROJECTCODE-ENV-INDEX.DOMAIN
+
+nslookup yahoo.com
+nslookup IP returned
+
+#Roboshop out scope in lab
+[dev]
+catalogue-dev-roboshop.internal
+
+[DEV]
+catalogue-dev-roboshop.internal
+
+[PRD]
+catalogue-prd-roboshop.internal
+
+
+
