@@ -3,3 +3,6 @@
 
 Deploy an Ec2 instance and install Jenkins, Ansible.
 To test ansible pull and push mechanism. 
+yum install python3-pip -y
+pip3 install pip --upgrade
+pip3 install ansible
