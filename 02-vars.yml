@@ -1,3 +1,5 @@
+#If we declare the variable at play level all the tasks will accept that variable
+
 - name: play level variables
   hosts: dev
   vars:
@@ -6,13 +8,20 @@
     - name: prind URL
       ansible.builtin.debug:
         msg: url = {{url}}
+
+ #Task level variable
     - name: prind task level URL
       vars:
         url: google.com
       ansible.builtin.debug:
           msg: url = {{url}}
-#If we declare the variable at play level all the tasks will accept that variable
+    - name: print variables from file
+      vars_files:
+        - sample-vars.yml
+      ansible.builtin.debug:
+        msg: url = {{url}}
 
-#Task level variable
+
+
 
 
