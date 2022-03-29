@@ -16,6 +16,11 @@
       ansible.builtin.debug:
           msg: url = {{url}}
 
+    - name: print variables from file
+      vars_files:
+        - sample-vars.yml
+      ansible.builtin.debug:
+        msg: url = {{url}}
 
 
 
