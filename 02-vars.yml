@@ -29,7 +29,12 @@
       ansible.builtin.debug:
         msg: url = {{url}}
 
-
+- name: inventory level variables
+  hosts: prd
+  tasks:
+    - name: prind URL
+      ansible.builtin.debug:
+        msg: url = {{url}}
 
 
 
