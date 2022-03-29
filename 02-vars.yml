@@ -2,6 +2,8 @@
 
 - name: play level variables
   hosts: prd
+  vars:
+    url: chakra.pizza.com
   tasks:
     - name: prind URL
       ansible.builtin.debug:
