@@ -6,3 +6,13 @@
     - name: prind URL
       ansible.builtin.debug:
         msg: url = {{url}}
+    - name: prind task level URL
+      vars:
+        url: google.com
+      ansible.builtin.debug:
+          msg: url = {{url}}
+#If we declare the variable at play level all the tasks will accept that variable
+
+#Task level variable
+
+
