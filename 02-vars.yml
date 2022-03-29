@@ -36,5 +36,5 @@
       ansible.builtin.debug:
         msg: url = {{url}}
 
-
-
+#command level variable is using -e option
+#ansible -i inv 02-vars.yml -e url=example.com
