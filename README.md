@@ -51,11 +51,11 @@ We send this file program, program reads it, fills the information and sends an 
 JSON
 
 {
-"CourseName": devops,
-"TrainerName" Chakra
+"CourseName": "devops",
+"TrainerName" "Chakra"
 "Trainers": [
-  chakra@gmail.com,
-  ram@gmail.com
+  "chakra@gmail.com",
+  "ram@gmail.com"
  ]
 "days": 
    { "monday": 20,
