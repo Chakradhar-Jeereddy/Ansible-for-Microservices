@@ -1,7 +1,7 @@
 #If we declare the variable at play level all the tasks will accept the variable.
 
 - name: play level variables
-  hosts: dev
+  hosts: prd
   vars:
      url: chakra.pizza.com
   tasks:
@@ -21,7 +21,7 @@
 
 #Variables from a file.
 - name: play level variables
-  hosts: dev
+  hosts: prd
   vars_files:
     - sample-vars.yml
   tasks:
