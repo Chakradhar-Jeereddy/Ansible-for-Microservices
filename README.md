@@ -32,4 +32,6 @@ ansible -i inventory-sample dev -m ping -ucentos -k
 
 ansible -i inventory-sample dev -b -m systemd -a "name=nginx state=started" -ucentos -k
 
+#Running the commands is manual, to run multiple tasks use yaml
+
 
