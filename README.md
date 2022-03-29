@@ -12,6 +12,10 @@ pip3 install pip --upgrade
 pip3 install ansible
 
 ansible -i inventory-sample ansible-node.roboshop.internal  -b -m yum -a name=nginx  -u centos -k
+
+ansible -i inventory-sample dev -b -m yum -a "name=nginx state=present" -ucentos -k
+
+ansible -i inventory-sample dev -b -m yum -a "name=nginx state=absent" -ucentos -k
  
 ansible -i inventory-sample ansible-node.roboshop.internal  -m ping  -u centos -k
 
@@ -21,4 +25,11 @@ In Latest ansible version collection concept is introduced.
 
 Ansible playbook is written in markup language, it helps in sharing information between systems, also between users and systems
 xml,json and yaml
+
+
+ansible -i inventory-sample dev -m ping -ucentos -k
+
+
+ansible -i inventory-sample dev -b -m systemd -a "name=nginx state=started" -ucentos -k
+
 
