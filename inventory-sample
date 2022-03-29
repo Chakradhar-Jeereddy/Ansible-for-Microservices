@@ -14,7 +14,7 @@ COUNTRYCODE-DCNO-APPTYPE-PROJECTCODE-ENV-INDEX.DOMAIN
 ansible-node.roboshop.internal
 
 
-[PRD]
+[prd]
 #Inventory variable
 ansible-node.roboshop.internal url=host.example.com
 
