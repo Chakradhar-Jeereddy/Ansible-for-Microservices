@@ -15,7 +15,9 @@ ansible-node.roboshop.internal
 
 
 [PRD]
-catalogue-prd-roboshop.internal
+#Inventory variable
+ansible-node.roboshop.internal url=host.example.com
+
 
 
 
