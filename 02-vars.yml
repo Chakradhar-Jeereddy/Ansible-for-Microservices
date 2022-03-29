@@ -16,9 +16,12 @@
       ansible.builtin.debug:
           msg: url = {{url}}
 
+- name: play level variables
+  hosts: dev
+  vars_files:
+    - sample-vars.yml
+  tasks:
     - name: print variables from file
-      vars_files:
-        - sample-vars.yml
       ansible.builtin.debug:
         msg: url = {{url}}
 
