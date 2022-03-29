@@ -1,0 +1,8 @@
+- name: play level variables
+  hosts: dev
+  vars:
+     url: chakra.pizza.com
+  tasks:
+    - name: prind URL
+      ansible.builtin.debug:
+        msg: url = {{url}}
