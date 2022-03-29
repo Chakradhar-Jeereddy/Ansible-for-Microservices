@@ -10,7 +10,7 @@
         msg: url = {{url}}
 
  #Task level variable
-    - name: prind task level URL
+    - name: print task level URL
       vars:
         url: google.com
       ansible.builtin.debug:
