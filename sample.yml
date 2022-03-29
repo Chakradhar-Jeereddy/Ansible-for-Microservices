@@ -1,5 +1,8 @@
-- name: sample play
+- name: Sample script
   hosts: dev
-    tasks:
+  tasks:
+    - name: print hello world
       ansible.builtin.debug:
-        msg: "Hello World"
+        msg: Hello World
+
+
