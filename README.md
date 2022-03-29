@@ -51,7 +51,7 @@ We send this file program, program reads it, fills the information and sends an 
 JSON
 
 {
-"CourceName": devops,
+"CourseName": devops,
 "TrainerName" Chakra
 "Trainers": [
   chakra@gmail.com,
