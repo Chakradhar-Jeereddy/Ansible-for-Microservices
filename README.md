@@ -34,4 +34,67 @@ ansible -i inventory-sample dev -b -m systemd -a "name=nginx state=started" -uce
 
 #Running the commands is manual, to run multiple tasks use yaml
 
+Mark language to communicate between users and systems and between systems
+XML is based on tagging
+<courseName>Devops</courseName>
+<timing>
+  <morning>2am</morning>
+  <evening>3pm</evening>
+</timing>
+<days>
+ monday,
+ sunday
+ </days>
+
+We send this file program, program reads it, fills the information and sends an email
+
+JSON
+
+{
+"CourceName": devops,
+"TrainerName" Chakra
+"Trainers": [
+  chakra@gmail.com,
+  ram@gmail.com
+ ]
+"days": 
+   { "monday": 20,
+     "sunday": 30
+  }
+}
+
+YAML
+CourseName: Devops
+Timing:
+ -Morning
+ -Evening
+Days:
+ Sunday: 3AM
+ Monday: 2AM
+
+Mark language will have data as 
+key - value (Regular key value)
+Key - Multiple Values (list) (ex: trainees)
+Key - key - value (map,dict) (ex: timing)
+
+CourseName: "DevOPS"
+Trainername: "Chakra"
+timings:
+  - 0600IST
+  - 07730IST
+topics:
+ aws:
+  - ec2
+  - s3
+ devops: ["Ansible", "Shell Scripting"]
+phoneNumbers: { personal: 293, mobile: 421 }
+
+1) Indentation is the way of YAML inputs provided
+2) Always use uniform spacing
+3) Tab space are not allowed, default use the double space
+4) Based on the program you are dealing, keys are provided by program, we have to
+fill those values as per our requirement.
+5) Some cases we create our own keys, mainly variables
+6) Some cases the values also will be predefined, we have to choose only one of them.
+
 
