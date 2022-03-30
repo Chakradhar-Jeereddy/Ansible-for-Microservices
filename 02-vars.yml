@@ -57,7 +57,7 @@
 #        msg: "{{out.stdout}}"
 #        msg: "{{out.stdout}}"
 #        msg: "{{out.stdout_lines[0]}}"
-         msg: {{output}}
+         msg: "{{output}}"
 
 
 #command level variable is using -e option
