@@ -50,6 +50,6 @@
 #play level variables
 #inventory variables
 
-#Pre-defined variables(FACTS), use setup module
-  gp; ansible-playbook -i inventory-sample dev -m setup
+##Pre-defined variables(FACTS), use setup module
+#gp; ansible-playbook -i inventory-sample dev -m setup
 
