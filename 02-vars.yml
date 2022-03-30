@@ -51,7 +51,7 @@
       register: out
     - name: print output
       ansible.builtin.debug:
-        msg: {{out}}
+        msg: "{{out}}"
 
 
 #command level variable is using -e option
