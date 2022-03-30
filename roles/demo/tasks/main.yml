@@ -1,3 +1,7 @@
 - name: Print name
   ansible.builtin.debug:
     msg: My name is chakradhar.
+
+- name: Print variable
+  ansible.builtin.debug:
+    msg: "{{url}}"
