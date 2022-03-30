@@ -36,13 +36,20 @@
       ansible.builtin.debug:
         msg: url = {{url}}
 
+- name: Ansible facts
+  hosts: dev
+  tasks:
+    ansible.builtin.debug:
+      msg: ansible_architecture = {{ansible_architecture}}
 #command level variable is using -e option
 #gp; ansible-playbook -i inventory-sample 02-vars.yml -e url=example.com -ucentos -k
 
-#Variable precedence from high to low
-
+####Variable precedence from high to low
 #command line variables
 #task level variables
 #play level variables
 #inventory variables
+
+#Pre-defined variables(FACTS), use setup module
+  gp; ansible-playbook -i inventory-sample dev -m setup
 
