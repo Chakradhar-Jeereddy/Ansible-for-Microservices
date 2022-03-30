@@ -56,3 +56,4 @@
 
 ##Use -e option to provide variables and passwords
 #gp; ansible-playbook -i inventory-sample 02-vars.yml  -ucentos -e ansible_password=DevOps321
+#gp; ansible-playbook -i inventory-sample 02-vars.yml  -e ansible_user=centos -e ansible_password=DevOps321
