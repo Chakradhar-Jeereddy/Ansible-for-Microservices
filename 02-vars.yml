@@ -40,7 +40,7 @@
   hosts: dev
   tasks:
     - name: Architecture
-        ansible.builtin.debug:
+      ansible.builtin.debug:
           msg: ansible_architecture = {{ansible_architecture}}
 #command level variable is using -e option
 #gp; ansible-playbook -i inventory-sample 02-vars.yml -e url=example.com -ucentos -k
