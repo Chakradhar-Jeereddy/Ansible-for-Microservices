@@ -79,3 +79,5 @@
 #Run time variables
 #From task output (register)
 #set a variable using task(set_fact)
+
+#Next topic is roles
