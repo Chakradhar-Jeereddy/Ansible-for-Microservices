@@ -97,4 +97,13 @@ fill those values as per our requirement.
 5) Some cases we create our own keys, mainly variables
 6) Some cases the values also will be predefined, we have to choose only one of them.
 
+Roles
+  Role
+   tasks
+     main.yml
+   vars
+     main.yml
+
+
+
 
