@@ -49,10 +49,15 @@
     - name: print hostname
       ansible.builtin.shell: uptime
       register: out
+    - name: Set a fact
+      ansible.builtin.set_fact:
+        output: "{{output.stdout}}"
     - name: print output
       ansible.builtin.debug:
 #        msg: "{{out.stdout}}"
-         msg: "{{out.stdout_lines[0]}}"
+#        msg: "{{out.stdout}}"
+#        msg: "{{out.stdout_lines[0]}}"
+         msg: {{output}}
 
 
 #command level variable is using -e option
