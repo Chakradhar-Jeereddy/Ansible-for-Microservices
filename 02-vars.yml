@@ -54,3 +54,5 @@
 ##Pre-defined variables(FACTS), use setup module
 #gp; ansible-playbook -i inventory-sample dev -m setup
 
+##Use -e option to provide variables and passwords
+#gp; ansible-playbook -i inventory-sample 02-vars.yml  -ucentos -e ansible_password=DevOps321
