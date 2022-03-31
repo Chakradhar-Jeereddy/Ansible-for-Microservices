@@ -38,20 +38,28 @@
     dest: /tmp/
     remote_src: yes
 
-- name: load catalog schema
+- name: locad schemas
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/catalogue.js"
+    file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes
-#if schema is there it will not create
-  register: out
+    loop:
+      - catalogue
+      - users
 
-- name: load users schema
-  community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/users.js"
-    idempotent: yes
-  #if schema is there it will not create
-  register: out
-- debug:
-    msg: out
+#- name: load catalog schema
+#  community.mongodb.mongodb_shell:
+#    file: "/tmp/mongodb-main/catalogue.js"
+#    idempotent: yes
+##if schema is there it will not create
+#  register: out
+#
+#- name: load users schema
+#  community.mongodb.mongodb_shell:
+#    file: "/tmp/mongodb-main/users.js"
+#    idempotent: yes
+#  #if schema is there it will not create
+#  register: out
+#- debug:
+#    msg: out
 
 
