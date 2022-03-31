@@ -11,9 +11,16 @@
 - name: Install mongodb
   ansible.builtin.yum:
     name: mongodb-org
-    state: present
+    state: installed
 
-- name: Replace a localhost entry in mongod.conf
+- name: Supports a validate command
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+
+- name: Update mongodb configuration - update listen ip
   lineinfile:
     path: /etc/mongod.conf
     search_string: '127.0.0.1'
@@ -21,7 +28,7 @@
 
 - name: Start mongodb
   ansible.builtin.systemd:
-    state: started
+    state: restarted
     name: mongod
     enabled: yes
 
@@ -31,13 +38,20 @@
     dest: /tmp/
     remote_src: yes
 
-- name: Run a js file containing MongoDB commands
+- name: load catalog schema
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/catalogue.js, /tmp/mongodb-main/users.js"
+    file: "/tmp/mongodb-main/catalogue.js"
+    idempotent: yes
+#if schema is there it will not create
   register: out
 
-- name: show output
-  ansible.builtin.debug:
+- name: load users schema
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/users.js"
+    idempotent: yes
+  #if schema is there it will not create
+  register: out
+- debug:
     msg: out
 
 
