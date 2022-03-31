@@ -1,5 +1,5 @@
 - name: Setup Forntend Component
-  hosts: FRONTEND
+  hosts: frontend
   roles:
     - frontend
 
