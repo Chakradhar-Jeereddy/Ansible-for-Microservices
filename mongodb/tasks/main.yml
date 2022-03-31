@@ -1,0 +1,5 @@
+- name: Confgure repository for mongodb
+  ansible.builtin.copy:
+    src: https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+    follow: yes
