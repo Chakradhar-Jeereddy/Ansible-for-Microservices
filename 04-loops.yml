@@ -17,3 +17,4 @@
         - {name: orange, count: 20}
         - {name: mango, count: 30}
 
+#keyword name and count should be uniform

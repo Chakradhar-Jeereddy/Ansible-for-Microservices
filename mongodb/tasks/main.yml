@@ -32,11 +32,11 @@
     name: mongod
     enabled: yes
 
-- name: Download and extract schemas
-  ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
-    dest: /tmp/
-    remote_src: yes
+#- name: Download and extract schemas
+#  ansible.builtin.unarchive:
+#    src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
+#    dest: /tmp/
+#    remote_src: yes
 
 - name: locad schemas
   community.mongodb.mongodb_shell:
@@ -45,6 +45,11 @@
     loop:
       - catalogue
       - users
+
+- name: Download and extract mongodb
+  include_role:
+    name: common
+    tasks_from: download
 
 #- name: load catalog schema
 #  community.mongodb.mongodb_shell:

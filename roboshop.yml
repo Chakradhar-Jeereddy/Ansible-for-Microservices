@@ -5,4 +5,12 @@
   roles:
     - frontend
 
+- name: Setup mongodb Component
+  hosts: mongodb
+  gather_facts: no
+  become: yes
+  roles:
+    - mongodb
+
+
 
