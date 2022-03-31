@@ -20,12 +20,6 @@
     replace: '0.0.0.0'
 
 
-- name: Update mongodb configuration - update listen ip
-  lineinfile:
-    path: /etc/mongod.conf
-    search_string: '127.0.0.1'
-    line: 0.0.0.0
-
 - name: Start mongodb
   ansible.builtin.systemd:
     state: restarted
