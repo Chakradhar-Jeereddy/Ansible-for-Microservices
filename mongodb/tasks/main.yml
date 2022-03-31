@@ -2,3 +2,37 @@
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
     dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Install mongodb
+  ansible.builtin.yum:
+    name: mongodb-org
+    state: present
+
+- name: Replace a localhost entry in mongod.conf
+  lineinfile:
+    path: /etc/mongod.conf
+    search_string: '127.0.0.1'
+    line: 127.0.0.1 0.0.0.0
+
+- name: Start nginx
+  ansible.builtin.systemd:
+    state: started
+    name: mongod
+    enabled: yes
+
+- name: Download and extract schemas
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
+    dest: /tmp/
+    remote_src: yes
+
+- name: Run a js file containing MongoDB commands
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/catalogue.js, /tmp/mongodb-main/users.js"
+  register: out
+
+- name: show output
+  ansible.builtin.debug:
+    msg: {{out}}
+
+
