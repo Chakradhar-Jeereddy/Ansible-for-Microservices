@@ -3,6 +3,11 @@
     name: nginx
     state: present
 
+- name: Download and extract frontend
+  include_role:
+    name: common
+    tasks_from: download
+
 # name: Download and extract frontend
 #  ansible.builtin.unarchive:
 #    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
@@ -31,7 +36,3 @@
     name: nginx
     enabled: yes
 
-- name: Download and extract frontend
-  include_role:
-    name: common
-    tasks_from: download
