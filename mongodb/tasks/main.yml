@@ -32,6 +32,11 @@
 #    dest: /tmp/
 #    remote_src: yes
 
+- name: Download and extract mongodb
+  include_role:
+    name: common
+    tasks_from: download
+
 - name: locad schemas
   community.mongodb.mongodb_shell:
     file: "/tmp/mongodb-main/{{item}}.js"
@@ -40,10 +45,7 @@
       - catalogue
       - users
 
-- name: Download and extract mongodb
-  include_role:
-    name: common
-    tasks_from: download
+
 
 #- name: load catalog schema
 #  community.mongodb.mongodb_shell:
