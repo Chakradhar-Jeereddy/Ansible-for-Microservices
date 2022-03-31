@@ -17,4 +17,4 @@
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
     dest: /tmp/frontend.zip
-  remote_src: yes
+    remote_src: yes
