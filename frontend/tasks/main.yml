@@ -22,9 +22,8 @@
 
 - name: update nginx service configuration
   ansible.builtin.copy:
-      src: /tmp/frontend-main/localhost.conf
+      src: roboshop.conf
       dest: /etc/nginx/default.d/roboshop.conf
-      remote_src: yes
 
 - name: Start nginx
   ansible.builtin.systemd:

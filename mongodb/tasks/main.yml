@@ -14,7 +14,7 @@
     search_string: '127.0.0.1'
     line: 127.0.0.1 0.0.0.0
 
-- name: Start nginx
+- name: Start mongodb
   ansible.builtin.systemd:
     state: started
     name: mongod
