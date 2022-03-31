@@ -1,9 +1,8 @@
 - name: Setup Forntend Component
-  hosts: frontend
+  hosts: mongodb
   gather_facts: no
   become: yes
   roles:
-    - frontend
     - mongodb
 
 
