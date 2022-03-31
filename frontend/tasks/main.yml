@@ -13,8 +13,19 @@
     name: nginx
     enabled: yes
 
-- name: unarchive HTDOCS
+- name: Download and extract frontend
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
-    dest: /tmp
+    dest: /tmp/
+    remote_src: yes
+
+- name: Cleanup old HTML content
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/
+    state: absent
+
+- name: Copy frontend contect to nginx path
+  ansible.builtin.copy:
+    src: /tmp/frontend-main/static/
+    dest: /usr/share/nginx/html/
     remote_src: yes
