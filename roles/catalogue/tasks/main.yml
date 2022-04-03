@@ -1,5 +1,5 @@
 - name: configure yum repository
-  ansible.builtin.shell: curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -
+  ansible.builtin.shell: 'curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -'
 
 - name: install node js and c++
   ansible.builtin.yum:
