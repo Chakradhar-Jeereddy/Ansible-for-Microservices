@@ -38,7 +38,7 @@
 
 - name: Updating dns names
   ansible.builtin.replace:
-    path: /etc/hosts
+    path: /home/roboshop/catalogue/systemd.service
     regexp: 'MONGO_DNSNAME'
     replace: '172.31.93.50'
 
