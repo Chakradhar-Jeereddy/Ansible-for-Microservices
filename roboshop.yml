@@ -1,16 +1,26 @@
-- name: Setup Forntend Component
-  hosts: frontend
-  gather_facts: no
+#- name: Setup Forntend Component
+#  hosts: frontend
+#  gather_facts: no
+#  become: yes
+#  roles:
+#    - frontend
+#
+#- name: Setup mongodb Component
+#  hosts: mongodb
+#  gather_facts: no
+#  become: yes
+#  roles:
+#    - mongodb
+#
+#- name: Setup catalogue Component
+#  hosts: catalogue
+#  gather_facts: no
+#  become: yes
+#  roles:
+#    - catalogue
+#
+
+- name: Roboshop setup
   become: yes
   roles:
-    - frontend
-
-- name: Setup mongodb Component
-  hosts: mongodb
-  gather_facts: no
-  become: yes
-  roles:
-    - mongodb
-
-
-
+    = "{{role_name}}"

@@ -1,0 +1,3 @@
+- name: Name of the {{COMPONENT}}
+  ansible.builtin.debug:
+    msg: Component name is {{COMPONENT}}

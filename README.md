@@ -105,5 +105,7 @@ Roles
      main.yml
 
 
+#Running only a peritcular role
 
+git pull; ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 roboshop.yml -e role_name=catalogue 
 
