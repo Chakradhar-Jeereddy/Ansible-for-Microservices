@@ -7,7 +7,7 @@
 
 - name: install node js and c++
   ansible.builtin.yum:
-    - name:
+      name:
         - nodejs
         - gcc-c++
       state: installed
