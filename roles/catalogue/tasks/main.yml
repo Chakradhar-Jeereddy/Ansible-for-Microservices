@@ -16,3 +16,9 @@
   ansible.builtin.user:
     name: roboshop
     comment: Roboshop application user
+
+- name: Download and extract schemas
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/catalogue/archive/main.zip
+    dest: /home/roboshop/catalogue
+    remote_src: yes
