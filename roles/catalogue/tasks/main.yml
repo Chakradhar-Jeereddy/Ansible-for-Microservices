@@ -11,3 +11,8 @@
         - nodejs
         - gcc-c++
       state: installed
+
+- name: adding roboshop user
+  ansible.builtin.user:
+    name: roboshop
+    comment: Roboshop application user
