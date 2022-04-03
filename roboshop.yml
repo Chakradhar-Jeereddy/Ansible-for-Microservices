@@ -21,7 +21,8 @@
 
 
 - name: Roboshop setup
-  hosts: catalogue
+  hosts: "{{hosts}}"
+  gather_facts: no
   become: yes
   roles:
     - "{{role_name}}"
