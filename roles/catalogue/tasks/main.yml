@@ -1,7 +1,3 @@
-- name: Name of the "{{COMPONENT}}"
-  ansible.builtin.debug:
-    msg: Component name is "{{COMPONENT}}"
-
 - name: configure yum repository
   ansible.builtin.shell: curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -
 
@@ -20,5 +16,17 @@
 - name: Download and extract schemas
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/catalogue/archive/main.zip
-    dest: /home/roboshop/catalogue
+    dest: /tmp/
     remote_src: yes
+
+- name: cleanup old content
+  ansible.builtin.file:
+    path: /home/roboshop/catalogue
+    state: absent
+
+- name: Copy app content
+  ansible.builtin.copy:
+    src: /tmp/catalogue-main/
+    dest: /home/roboshop/catalogue/
+    remote_src: yes
+  become_user: roboshop
