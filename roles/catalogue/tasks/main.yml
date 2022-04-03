@@ -1,3 +1,13 @@
 - name: Name of the {{COMPONENT}}
   ansible.builtin.debug:
     msg: Component name is {{COMPONENT}}
+
+- name: configure yum repository
+  ansible.builtin.shell: curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -
+
+- name: install node js and c++
+  anisble.builtin.yum:
+    - name:
+        - nodejs
+        - gcc-c++
+      state: installed
