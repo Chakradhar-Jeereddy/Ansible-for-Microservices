@@ -18,10 +18,10 @@
 #  become: yes
 #  roles:
 #    - catalogue
-#
+
 
 - name: Roboshop setup
   hosts: catalogue
   become: yes
   roles:
-    = "{{role_name}}"
+    - "{{role_name}}"
