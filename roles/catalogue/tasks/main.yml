@@ -45,7 +45,7 @@
 - name: Copy app content
   ansible.builtin.copy:
     src: /home/roboshop/catalogue/systemd.service
-    dest: /home/roboshop/catalogue/systemd.service
+    dest: /home/roboshop/catalogue/catalogue.service
     remote_src: yes
 
 - name: Starting catalogue
