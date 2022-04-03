@@ -16,7 +16,7 @@
 - name: Download and extract schemas
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/catalogue/archive/main.zip
-    dest: /tmp/
+    dest: /tmp
     remote_src: yes
 
 - name: cleanup old content
