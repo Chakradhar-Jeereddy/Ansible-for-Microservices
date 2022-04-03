@@ -21,6 +21,7 @@
 #
 
 - name: Roboshop setup
+  hosts: catalogue
   become: yes
   roles:
     = "{{role_name}}"
