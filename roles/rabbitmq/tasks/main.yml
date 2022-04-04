@@ -19,7 +19,7 @@
     user: roboshop
     password: roboshop123
     tags: administrator
-    vhosts: /
+    vhost: /
     configure_priv: .*
     read_priv: .*
     write_priv: .*
