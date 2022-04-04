@@ -20,3 +20,8 @@
 - name: check db password by collecting information
   community.mysql.mysql_info:
     login_user: RoboShop@1
+  register: output
+  ignore_error: yes
+
+- debug:
+    msg: output.stdout
