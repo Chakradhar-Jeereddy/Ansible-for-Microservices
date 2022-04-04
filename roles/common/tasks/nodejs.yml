@@ -15,10 +15,16 @@
 
 - name: download and extract "{{COMPONENT}}" content
   ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/"{{COMPONENT}}"/archive/main.zip
+    src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
     dest: /tmp
   remote_src: yes
   become_usewr: roboshop
+
+- name: Download and extract schemas
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/catalogue/archive/main.zip
+    dest: /tmp
+    remote_src: yes
 
 - name: cleanup old content
   ansible.builtin.copy:
