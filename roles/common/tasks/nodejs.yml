@@ -41,4 +41,3 @@
   ansible.builtin.copy:
     src: "{{ COMPONENT }}.service"
     dest:  /etc/systemd/system/{{COMPONENT}}.service
-    remote_src: yes
