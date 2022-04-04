@@ -14,3 +14,7 @@
     name: mysqld
     state: restarted
     enabled: yes
+
+- name: check db password by collecting information
+  community.mysql.mysql_info:
+    login_user: RoboShop@1
