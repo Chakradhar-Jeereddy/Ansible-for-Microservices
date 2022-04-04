@@ -45,5 +45,5 @@
 - name: check the validate password plugin
   ansible.builtin.shell: echo show plugins | mysql -uroot -pRoboShop@1
   register: plugin_state
-  debug:
+- debug:
     msg: "{{plugin_state}}"
