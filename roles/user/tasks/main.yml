@@ -14,7 +14,7 @@
     replace: '172.31.20.251'
     path: /etc/systemd/system/"{{COMPONENT}}".service
 
-- namee: starting user service
+- name: starting user service
   ansible.builtin.systemd:
     name: user
     daemon_reload: yes
