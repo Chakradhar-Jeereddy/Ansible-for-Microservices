@@ -24,4 +24,4 @@
   ignore_errors: yes
 
 - debug:
-    msg: output.stdout
+    msg: "{{output}}.stdout"
