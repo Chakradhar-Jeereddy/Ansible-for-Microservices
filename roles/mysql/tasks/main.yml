@@ -54,6 +54,6 @@
       ansible.builtin.copy:
          src: pass-validate.sql
          dest: /tmp/pass-validate.sql
-    - name: uninstall plugin
-      ansible.builtin.hell: mysql --connect-expired-password -uroot -pRoboShop@1 </tmp/pass-validate.sql
+#    - name: uninstall plugin
+#      ansible.builtin.hell: mysql --connect-expired-password -uroot -pRoboShop@1 </tmp/pass-validate.sql
 
