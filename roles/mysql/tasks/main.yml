@@ -2,7 +2,7 @@
   ansible.builtin.copy:
     src: "{{COMPONENT}}_repos"
     dest: /etc/yum.repos.d/mysql.repo
-    remote_src: yes
+
 
 - name: Update service file of {{COMPONENT}}
   ansible.builtin.copy:
