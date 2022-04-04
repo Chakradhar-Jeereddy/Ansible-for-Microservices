@@ -1,56 +1,17 @@
-- name: configure yum repository
-  ansible.builtin.shell: curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -
-
-- name: install node js and c++
-  ansible.builtin.yum:
-      name:
-        - nodejs
-        - gcc-c++
-      state: present
-
-- name: adding roboshop user
-  ansible.builtin.user:
-    name: roboshop
-    comment: Roboshop application user
-
-- name: Download and extract schemas
-  ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/catalogue/archive/main.zip
-    dest: /tmp
-    remote_src: yes
-
-- name: cleanup old content
-  ansible.builtin.file:
-    path: /home/roboshop/catalogue
-    state: absent
-
-- name: Copy user content
-  ansible.builtin.copy:
-    src: /tmp/catalogue-main/
-    dest: /home/roboshop/catalogue/
-    remote_src: yes
-  become_user: roboshop
-
-- name: Installing npm
-  community.general.npm:
-    path: /home/roboshop/catalogue
-  become_user: roboshop
+- name: Nodejs App Setup
+  include_role:
+    name: common
+    tasks_from: nodejs
 
 - name: Updating dns names
   ansible.builtin.replace:
-    path: /home/roboshop/catalogue/systemd.service
+    path: /etc/systemd/system/{{COMPONENT}}.service
     regexp: 'MONGO_DNSNAME'
     replace: '172.31.93.50'
 
-- name: Copy app content
-  ansible.builtin.copy:
-    src: /home/roboshop/catalogue/systemd.service
-    dest: /etc/systemd/system/catalogue.service
-    remote_src: yes
-
-- name: Starting catalogue
+- name: Starting {{COMPONENT}}
   ansible.builtin.systemd:
-    name: catalogue
+    name: "{{COMPONENT}}"
     daemon_reload: yes
     enabled: yes
     state: restarted
