@@ -35,7 +35,6 @@
   ansible.builtin.copy:
     src: /tmp/{{COMPONENT}}-main/
     dest: /home/roboshop/{{COMPONENT}}/
-    state: present
     remote_src: yes
   become_user: roboshop
 
