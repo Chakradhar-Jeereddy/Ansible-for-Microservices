@@ -1,0 +1,16 @@
+- name: configure repose for {{COMPONENT}}
+  ansible.builtin.copy:
+    src: mysql-repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: "installing {{COMPONENT}} server"
+  ansible.builtin.yum:
+    name: mysql-community-server
+    state: installed
+
+
+- name: "starting {{COMPONENT}} server"
+  ansible.builtin.systemd:
+    name: mysqld
+    state: restarted
+    enabled: yes
