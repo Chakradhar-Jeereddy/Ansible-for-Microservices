@@ -46,16 +46,14 @@
   ansible.builtin.shell: echo show plugins | mysql -uroot -pRoboShop@1 | grep validate_password
   register: plugin_state
   ignore_errors: yes
-- debug:
-    msg: "{{plugin_state}}"
 
 - name: uninstall password validate pligin
   when: plugin_state.rc == 0
   block:
     - name: copy sqlfile to uninstall plugin
       ansible.builtin.copy:
-        src: pass-validate.sql
-        dest: /tmp/pass-validate.sql
+         src: pass-validate.sql
+         dest: /tmp/pass-validate.sql
     - name: uninstall plugin
       ansible.builtin.hell: mysql --connect-expired-password -uroot -pRoboShop@1 </tmp/pass-validate.sql
 
