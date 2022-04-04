@@ -61,6 +61,7 @@
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/mysql/archive/main.zip
     dest: /tmp
+    remote_src: yes
 
 - name: load schema into mysql
   ansible.builtin.shell: mysql -u root -pRoboShop@1 < /tmp/mysql-main/shipping.sql
