@@ -1,0 +1,22 @@
+- name: Nodejs App Setup
+  include_role:
+    name: common
+    tasks_from: nodejs
+- name: update redis endpoint
+  ansible.builtin.replace:
+    regexp: 'REDIS_ENDPOINT'
+    replace: '172.31.20.251'
+    path: /etc/systemd/system/"{{COMPONENT}}".service
+
+- name: update mongodb endpoint
+  ansible.builtin.replace:
+    regexp: 'MONGO_ENDPOINT'
+    replace: '172.31.20.251'
+    path: /etc/systemd/system/"{{COMPONENT}}".service
+
+- namee: starting user service
+  ansible.builtin.systemd:
+    name: user
+    daemon_reload: yes
+    enabled: yes
+    state: restarted

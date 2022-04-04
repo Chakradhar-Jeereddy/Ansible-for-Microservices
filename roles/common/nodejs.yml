@@ -1,0 +1,40 @@
+- name: configure yum repose
+  ansible.builtin.shell: curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -
+
+- name: Instaling nodejs and c++
+  ansible.builtin.yum:
+    name:
+      - nodejs
+      - gcc-c++
+    state: installed
+
+- name: add application user
+  ansible.builtin.user:
+    name: roboshop
+  comment: Add roboshop user
+
+- name: download and extract "{{COMPONENT}}" content
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/"{{COMPONENT}}"/archive/main.zip
+    dest: /tmp
+  remote_src: yes
+  become_usewr: roboshop
+
+- name: cleanup old content
+  ansible.builtin.copy:
+    src: /home/roboshop/"{{COMPONENT}}"
+    state: absent
+
+- name: copy user content
+  ansible.builtin.copy:
+    src: /tmp/{{COMPONENT}}-main/
+    dest: /home/roboshop/"{{COMPONENT}}"/
+    state: present
+  remote_src: yes
+  become_user: roboshop
+
+- name: Update "{{COMPONENT}}" service file
+  ansible.builtin.copy:
+    src: /home/roboshop/{"{{COMPONENT}}"/systemd.service
+    dest: /etc/systemd/system/"{{COMPONENT}}".service
+
