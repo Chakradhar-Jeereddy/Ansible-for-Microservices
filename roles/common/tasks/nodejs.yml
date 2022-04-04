@@ -40,6 +40,6 @@
 
 - name: Update {COMPONENT}} service file
   ansible.builtin.copy:
-    src: /home/roboshop/{{{COMPONENT}}/systemd.service
+    src: /home/roboshop/{{COMPONENT}}/systemd.service
     dest: /etc/systemd/system/{{COMPONENT}}.service
 
