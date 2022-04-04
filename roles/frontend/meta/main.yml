@@ -1,5 +1,6 @@
 #Meta file is to create role dependencies and this will be attached to all roles and it will be the fist
-#task that runs in any role we trigger.
+#task that runs in any role we trigger. you need to put directory under a role which suppose to call this role.
+
 
 dependencies:
   - role: common
