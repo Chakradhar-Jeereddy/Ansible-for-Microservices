@@ -23,5 +23,10 @@
   register: mysql_state
   ignore_errors: yes
 
-- debug:
+#- debug:
+#    msg: "{{mysql_state}}"
+
+- name: "reset {{COMPONENT}} password"
+  when: mysql_state.failed
+  debug:
     msg: "{{mysql_state}}"

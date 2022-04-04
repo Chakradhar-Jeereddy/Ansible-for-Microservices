@@ -1,0 +1,16 @@
+- name: conditions
+  hosts: localhost
+  vars:
+    a: abc
+  tasks:
+    - name: conditions on strings
+      debug:
+        msq: String condition is true
+      when: a == 'abc'
+
+    - name: conditions on strings
+      debug:
+        msq: String condition is not true
+      when: a != 'abc'
+
+# Variable should always come left side
