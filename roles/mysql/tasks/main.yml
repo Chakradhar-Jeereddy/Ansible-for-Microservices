@@ -21,7 +21,7 @@
   community.mysql.mysql_info:
     login_user: RoboShop@1
   register: output
-  ignore_error: yes
+  ignore_errors: yes
 
 - debug:
     msg: output.stdout
