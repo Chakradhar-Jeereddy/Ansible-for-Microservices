@@ -3,12 +3,6 @@
     src: "{{COMPONENT}}_repos"
     dest: /etc/yum.repos.d/mysql.repo
 
-
-- name: Update service file of {{COMPONENT}}
-  ansible.builtin.copy:
-    src: "{{ COMPONENT }}.service"
-    dest:  /etc/systemd/system/{{COMPONENT}}.service
-
 - name: "installing {{COMPONENT}} server"
   ansible.builtin.yum:
     name: mysql-community-server
