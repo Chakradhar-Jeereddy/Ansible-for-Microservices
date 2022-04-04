@@ -41,5 +41,5 @@
 - name: Update service file of {{COMPONENT}}
   ansible.builtin.copy:
     src: /home/roboshop/{{COMPONENT}}/systemd.service
-    dest: /etc/systemd/system/{{COMPONENT}}.service
-  remote_src: yes
+    dest:  /etc/systemd/system/{{COMPONENT}}.service
+    remote_src: yes
