@@ -20,12 +20,6 @@
     remote_src: yes
   become_user: roboshop
 
-- name: Download and extract schemas
-  ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/catalogue/archive/main.zip
-    dest: /tmp
-    remote_src: yes
-
 - name: cleanup old content
   ansible.builtin.file:
     path: /home/roboshop/{{COMPONENT}}
