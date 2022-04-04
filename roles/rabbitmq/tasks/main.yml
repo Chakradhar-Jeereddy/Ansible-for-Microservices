@@ -1,7 +1,6 @@
 - name: install erlang
   ansible.builtin.yum:
-    name:
-      - https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
+    name: https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
     state: installed
 
 - name: configure repos
