@@ -2,16 +2,3 @@
   include_role:
     name: common
     tasks_from: nodejs
-
-- name: Updating dns names
-  ansible.builtin.replace:
-    path: /etc/systemd/system/{{COMPONENT}}.service
-    regexp: 'MONGO_DNSNAME'
-    replace: '172.31.93.50'
-
-- name: Starting {{COMPONENT}}
-  ansible.builtin.systemd:
-    name: "{{COMPONENT}}"
-    daemon_reload: yes
-    enabled: yes
-    state: restarted
