@@ -1,0 +1,4 @@
+- name: add application user
+  ansible.builtin.user:
+    name: roboshop
+    comment: Add roboshop user

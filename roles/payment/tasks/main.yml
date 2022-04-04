@@ -1,0 +1,24 @@
+- name: install python
+  ansible.builtin.yum:
+    - python36
+    - gcc
+    - python3-devel
+
+- name: Add application user
+  include_role:
+    name: common
+    tasks_from: user
+
+- name: download and extact files of {{COMPONENT}}
+  include_role:
+    name: common
+    tasks_from: download
+  become_user: roboshop
+
+- name: Install bottle for Python 3.3 specifically, using the 'pip3.3' executable
+  pip:
+    requirements: /home/roboshop/payment/requirements.txt
+    executable: pip3
+
+
+
