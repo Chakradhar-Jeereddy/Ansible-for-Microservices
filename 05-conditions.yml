@@ -4,7 +4,7 @@
     a: abc
     b: 10
     c: true
-    b: false
+    d: false
   tasks:
     - name: conditions on strings
       debug:
