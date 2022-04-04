@@ -1,0 +1,8 @@
+# If any task changed and if you want to notify to some other
+#task the status and take action based on status, it called as handlers
+#by default handlers will run at end of the play, this behaviour can be changed
+
+- name: Restart nginx
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
