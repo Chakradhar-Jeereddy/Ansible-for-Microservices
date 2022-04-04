@@ -16,7 +16,11 @@
 
 # Variable should always come left side
 
-    - name: numbers
+    - name: number1
       debug:
         msg: both numbers are equal
       when: b == 10
+    - name: number1
+      debug:
+        msg: b is less than 20
+      when: b < 20
