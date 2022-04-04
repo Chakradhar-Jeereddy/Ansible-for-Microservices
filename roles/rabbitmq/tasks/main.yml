@@ -1,14 +1,11 @@
-- name: install erlang
-  ansible.builtin.yum:
-    name: https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
-    state: installed
-
 - name: configure repos
   ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
-- name: installing {{COMPONENT}}
+- name: install erlang and rabbitmq
   ansible.builtin.yum:
-    name: rabbitmq-server
+    name:
+       - https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
+       - rabbitmq-server
     state: installed
 
 - name: starting {{COMPONENT}}
@@ -21,10 +18,11 @@
   community.rabbitmq.rabbitmq_user:
     user: roboshop
     password: roboshop123
+    tags: administrator
+    vhosts: /
     configure_priv: .*
     read_priv: .*
     write_priv: .*
     state: present
 
-- name: set user tag
-  ansible.builtin.shell: rabbitmqctl set_user_tags roboshop administrator
+
