@@ -13,5 +13,5 @@ redis.roboshop.internal
 [USER]
 user.roboshop.internal
 
-[cart]
+[CART]
 cart.roboshop.internal
