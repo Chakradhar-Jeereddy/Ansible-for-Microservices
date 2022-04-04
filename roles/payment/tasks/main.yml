@@ -33,6 +33,18 @@
   args:
     chdir: /home/roboshop/{{COMPONENT}}
 
+- name: Update service file of {{COMPONENT}}
+  ansible.builtin.copy:
+    src: "{{ COMPONENT }}.service"
+    dest:  /etc/systemd/system/{{COMPONENT}}.service
+
+- name: "starting {{ COMPONENT }} service"
+  ansible.builtin.systemd:
+    name: "{{COMPONENT}}"
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+
 
 #- name: Install bottle for Python 3.3 specifically, using the 'pip3.3' executable
 #  pip:
