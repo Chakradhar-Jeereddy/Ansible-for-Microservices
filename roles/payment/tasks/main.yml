@@ -1,8 +1,9 @@
 - name: install python
   ansible.builtin.yum:
-    - python36
-    - gcc
-    - python3-devel
+    name:
+      - python36
+      - gcc
+      - python3-devel
 
 - name: Add application user
   include_role:
