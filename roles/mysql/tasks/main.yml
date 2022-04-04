@@ -41,3 +41,9 @@
 
     - name: reset mysql password
       ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{DEFAULT_ROOT_PASSWORD.stdout}}" </tmp/rootpass.sql
+
+- name: check the validate password plugin
+  ansible.builtin.shell: echo show plugins | mysql -uroot -pRoboShop@1
+  register: plugin_state
+  debug:
+    msg: "{{plugin_state}}"
