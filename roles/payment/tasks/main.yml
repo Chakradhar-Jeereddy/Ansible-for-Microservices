@@ -10,10 +10,11 @@
     name: common
     tasks_from: user
 
-- name: download and extact files of {{COMPONENT}}
-  include_role:
-    name: common
-    tasks_from: download
+- name: Download and extract {{COMPONENT}}
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
+    dest: /tmp
+    remote_src: yes
   become_user: roboshop
 
 - name: Install bottle for Python 3.3 specifically, using the 'pip3.3' executable
