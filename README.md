@@ -110,3 +110,5 @@ Roles
 git pull; ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 roboshop.yml -e role_name=catalogue
 gp; ansible-playbook roboshop.yml -i inv  -e ansible_user=centos -e ansible_password=DevOps321 -e role_name=catalogue -e hosts=catalogue
 
+-f FORKS, --forks  - It specify number of parallel processess to use (default 5)
+If one of the five is finished, it will pick the 6th one, but by default it will not exceed the count of  5
