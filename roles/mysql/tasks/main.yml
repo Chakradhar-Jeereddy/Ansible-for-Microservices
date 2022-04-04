@@ -55,7 +55,13 @@
          src: pass-validate.sql
          dest: /tmp/pass-validate.sql
     - name: uninstall plugin
-      ansible.builtin.shell: mysql --connect-expired-password -uroot -pRoboShop@1 </tmp/pass-validate.sql
+      community.mysql.mysql_db:
+        state: import
+        name: all
+        target: /tmp/pass-validate.sql
+        login_user: root
+        login_password: RoboShop@1
+#      ansible.builtin.shell: mysql --connect-expired-password -uroot -pRoboShop@1 </tmp/pass-validate.sql
 
 - name: unarchive mysql schema
   ansible.builtin.unarchive:
