@@ -1,7 +1,13 @@
 - name: configure repose for {{COMPONENT}}
   ansible.builtin.copy:
-    src: mysql-repo
+    src: "{{COMPONENT}}-repo"
     dest: /etc/yum.repos.d/mysql.repo
+    remote_src: no
+
+- name: Update service file of {{COMPONENT}}
+  ansible.builtin.copy:
+    src: "{{ COMPONENT }}.service"
+    dest:  /etc/systemd/system/{{COMPONENT}}.service
 
 - name: "installing {{COMPONENT}} server"
   ansible.builtin.yum:
