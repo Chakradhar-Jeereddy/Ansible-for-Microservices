@@ -35,6 +35,7 @@
 - name: installing npm
   community.general.npm:
     path: /home/roboshop/{{COMPONENT}}
+  become_user: roboshop
 
 - name: Update service file of {{COMPONENT}}
   ansible.builtin.copy:
