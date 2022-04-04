@@ -27,10 +27,9 @@
     remote_src: yes
 
 - name: cleanup old content
-  ansible.builtin.copy:
-    src: /home/roboshop/{{COMPONENT}}
-    dest: absent
-    remote_src: yes
+  ansible.builtin.file:
+    path: /home/roboshop/{{COMPONENT}}
+    state: absent
 
 - name: copy user content
   ansible.builtin.copy:
