@@ -19,7 +19,8 @@
 
 - name: check db password by collecting information
   community.mysql.mysql_info:
-    login_user: RoboShop@1
+    login_user: root
+    login_password: RoboShop@1
   register: mysql_state
   ignore_errors: yes
 
