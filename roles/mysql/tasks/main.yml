@@ -1,6 +1,6 @@
 - name: configure repose for {{COMPONENT}}
   ansible.builtin.copy:
-    src: mysql_repos
+    src: "{{COMPONENT}}"_repos
     dest: /etc/yum.repos.d/mysql.repo
 
 
