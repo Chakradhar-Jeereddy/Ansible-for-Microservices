@@ -11,7 +11,7 @@
 - name: add application user
   ansible.builtin.user:
     name: roboshop
-  comment: Add roboshop user
+    comment: Add roboshop user
 
 - name: download and extract "{{COMPONENT}}" content
   ansible.builtin.unarchive:
