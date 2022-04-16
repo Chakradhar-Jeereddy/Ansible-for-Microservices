@@ -17,3 +17,4 @@
 
 # ansible-playbook ansible-vault.yml --ask-vault-password
 #ansible-vault  encrypt_string abc@123
+#Ansible vault works only for ansible, it is not preferable. We need to look for something generic.
