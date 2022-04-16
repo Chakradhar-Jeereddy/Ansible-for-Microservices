@@ -1,7 +1,7 @@
 - name: demo on vault
   hosts: localhost
   vars:
-    pass: !vault |
+    Pass: !vault |
                      $ANSIBLE_VAULT;1.1;AES256
                      65343963313332336231633264633962666536623766633638336165
                      61653866356233646330343338656631373431326133343537623032
@@ -13,4 +13,4 @@
   tasks:
     - name: password encryption
       ansible.builtin.debug:
-        msg: password= {{ pass }}
+        msg: password= {{pass}}
