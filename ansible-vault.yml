@@ -1,3 +1,6 @@
 - name: ansible-vault
-  ansible.builtin.debug:
-    msg: password is abc
+  hosts: localhost
+  tasks:
+    - name: password encryption
+      ansible.builtin.debug:
+        msg: password is abc
