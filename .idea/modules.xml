@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Anisble-for-Microservices.iml" filepath="$PROJECT_DIR$/.idea/Anisble-for-Microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Ansible-for-Microservices.iml" filepath="$PROJECT_DIR$/.idea/Ansible-for-Microservices.iml" />
     </modules>
   </component>
 </project>
