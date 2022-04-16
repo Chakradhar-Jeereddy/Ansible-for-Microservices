@@ -14,3 +14,6 @@
     - name: password encryption
       ansible.builtin.debug:
         msg: password= {{Pass}}
+
+# ansible-playbook ansible-vault.yml --ask-vault-password
+#ansible-vault  encrypt_string abc@123
