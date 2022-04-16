@@ -13,4 +13,4 @@
   tasks:
     - name: password encryption
       ansible.builtin.debug:
-        msg: password= {{pass}}
+        msg: password= {{Pass}}
