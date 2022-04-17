@@ -1,0 +1,1 @@
+ansible-pull -U https://github.com/Chakradhar-Jeereddy/Ansible-for-Microservices  roboshop.yml -e hosts=localhost -e role_name=frontend
