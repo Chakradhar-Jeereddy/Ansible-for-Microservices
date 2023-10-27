@@ -10,6 +10,10 @@ yum install python3-pip -y
 pip3 install pip --upgrade
 
 pip3 install ansible
+ansible-doc --list
+ansible-doc file
+ansible-config dump
+ansible-inventory --list
 
 ansible -i inventory-sample ansible-node.roboshop.internal  -b -m yum -a name=nginx  -u centos -k
 
