@@ -1,5 +1,8 @@
 # Ansible for Microservices
 
+greate learning - https://olympus.mygreatlearning.com/login
+username - ravichandra0083@gmail.com
+
 
 Deploy an Ec2 instance and install Jenkins, Ansible and python.
 
