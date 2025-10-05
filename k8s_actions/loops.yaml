@@ -1,0 +1,23 @@
+---
+- hosts: worker
+  become: yes
+  gather_facts: no
+  tasks:
+   - name: Install "{{ item }}"
+     package:
+       name: "{{ item }}"
+       state: present
+     loop:
+       - nginx                                                                                         
+       - mysql                                                                                         
+       - httpd   
+
+   - name: start "{{ item }}"
+     service:
+        name: "{{ item }}"
+        state: started
+        enabled: yes 
+     loop:
+       - nginx
+       - mysql
+       - httpd 
