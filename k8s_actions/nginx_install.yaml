@@ -1,0 +1,15 @@
+---
+- hosts: worker
+  become: yes
+  gather_facts: no
+  tasks:
+   - name: Install nginx
+     package:
+       name: nginx
+       state: present
+
+   - name: start service
+     service:
+        name: nginx
+        state: started
+        enabled: yes  
