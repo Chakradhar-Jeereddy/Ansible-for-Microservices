@@ -1,0 +1,12 @@
+---
+- hosts: worker
+  tasks:
+   - name: nginx
+     dnf:
+      state: present
+  
+
+   - name: start service
+     service:
+       state: started
+     enabled: yes  
