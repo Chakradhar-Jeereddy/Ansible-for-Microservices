@@ -1,0 +1,34 @@
+---
+#Variables can be used at play level, task level and command level.
+#Command level has high preference followed by task and play level.
+#Command systnax: ansible-playbook -i hosts test.yaml -e "ansible_user=ec2-user ansible_password=DevOps321 course=Ansible"
+
+- name: play level variables
+  hosts: worker
+  become: yes
+  gather_facts: no
+  vars:
+    course: Ansible
+    Duration: 10hrs
+    Trainer: chakra
+  tasks:
+   - name: print the course info
+     vars:
+       course: Argocd
+     ansible.builtin.debug:
+       msg: "Course Name is: {{ course }}, Duration is: {{ Duration }}, Trainer is {{ Trainer }}"
+
+- name: play level variables2
+  hosts: worker
+  become: yes
+  gather_facts: no
+  vars:
+    course: Terraform
+    Duration: 10hrs
+    Trainer: chakra
+  tasks:
+   - name: print the course info
+     vars:
+       course: helm #Task level variables overwrite varaibles defined at play level
+     ansible.builtin.debug:
+       msg: "Course Name is: {{ course }}, Duration is: {{ Duration }}, Trainer is {{ Trainer }}"

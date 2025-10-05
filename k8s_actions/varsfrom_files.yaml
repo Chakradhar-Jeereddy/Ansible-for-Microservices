@@ -1,0 +1,27 @@
+---
+#Variables from files instead of modifying the play file.
+
+- name: Variables from files
+  hosts: worker
+  become: yes
+  gather_facts: no
+  vars_files:
+    - course.yaml
+
+  tasks:
+   - name: print the course info
+     ansible.builtin.debug:
+       msg: "Course Name is: {{ course }}, Duration is: {{ Duration }}, Trainer is {{ Trainer }}"
+
+- name: play level variables2
+  hosts: worker
+  become: yes
+  gather_facts: no
+  vars:
+    course: Terraform
+    Duration: 10hrs
+    Trainer: chakra
+  tasks:
+   - name: print the course info
+     ansible.builtin.debug:
+       msg: "Course Name is: {{ course }}, Duration is: {{ Duration }}, Trainer is {{ Trainer }}"

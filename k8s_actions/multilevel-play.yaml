@@ -1,0 +1,26 @@
+---
+- name: play level variables
+  hosts: worker
+  become: yes
+  gather_facts: no
+  vars:
+    course: Ansible
+    Duration: 10hrs
+    Trainer: chakra
+  tasks:
+   - name: print the course info
+     ansible.builtin.debug:
+       msg: "Course Name is: {{ course }}, Duration is: {{ Duration }}, Trainer is {{ Trainer }}"
+
+- name: play level variables2
+  hosts: worker
+  become: yes
+  gather_facts: no
+  vars:
+    course: Ansible
+    Duration: 10hrs
+    Trainer: chakra
+  tasks:
+   - name: print the course info
+     ansible.builtin.debug:
+       msg: "Course Name is: {{ course }}, Duration is: {{ Duration }}, Trainer is {{ Trainer }}"
