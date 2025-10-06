@@ -1,0 +1,23 @@
+---
+#Data types in ansible
+- name: data types
+  hosts: worker
+  become: yes
+  gather_facts: no
+  vars:
+    course: "DevOps with AWS" #string
+    duration: 120 #number
+    is_live: true #boolean
+    tools: # ["linux", "shell", "ansible"] is a list
+     - linux
+     - shell
+     - ansible
+    concepts:   # dictionary or map
+     cloud: aws
+     cm: ansible
+
+  tasks:
+   - name: print course info
+     ansible.builtin.debug:
+       msg: "course name: {{ course }}, duration: {{ duration }}, is it live?: {{ is_live }}, tools are: {{ tools[0] }}, concepts are: {{ concepts.cloud }}"
+#command: ansible-playbook -i hosts test.yaml -e "ansible_user=ec2-user ansible_password=DevOps321"
