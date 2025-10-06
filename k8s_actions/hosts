@@ -1,0 +1,6 @@
+[worker]
+172.31.27.76
+
+[worker:vars]
+username=ec2-user
+password=DevOps321

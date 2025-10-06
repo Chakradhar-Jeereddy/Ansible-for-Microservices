@@ -1,7 +1,7 @@
 ---
 #Secure conections, prompt for password to excute the play as ssh should not have password.
 #Use vars_prompt
-#ansible-playbook -i hosts test.yaml -e "ansible_user={{ username }} ansible_password={{ password }}"
+#ansible-playbook -i hosts test.yaml -e "ansible_user=username ansible_password=password"
 #The username and password info is passed during runtime.
 - name: prompt for username and password
   hosts: worker

@@ -1,0 +1,20 @@
+---
+# Using variables in inventory file and using that at command line and in play level.
+# hosts
+# [worker]
+#172.31.27.76
+
+#[worker:vars]
+#username=ec2-user
+#password=DevOps321
+#command=ansible-playbook -i hosts test.yaml -e "ansible_user=username ansible_password=password"
+- name: prompt for username and password
+  hosts: worker
+  become: yes
+  gather_facts: no
+  tasks:
+   - name: print credentials
+     ansible.builtin.debug:
+       msg: "Hello, Username is {{ username }}, password is {{ password }}"
+   - name: ping
+     ping:
