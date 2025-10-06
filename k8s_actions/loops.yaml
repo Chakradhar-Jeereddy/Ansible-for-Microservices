@@ -3,7 +3,7 @@
   become: yes
   gather_facts: no
   tasks:
-   - name: Install "{{ item }}"
+   - name: "{{ item }}"
      package:
        name: "{{ item }}"
        state: present
@@ -12,12 +12,12 @@
        - mysql                                                                                         
        - httpd   
 
-   - name: start "{{ item }}"
-     service:
-        name: "{{ item }}"
-        state: started
-        enabled: yes 
+   - name: remove {{ item.name }}
+     package:
+       name: "{{ item.name }}"
+       state: "{{ item.state }}"
      loop:
-       - nginx
-       - mysql
-       - httpd 
+       - { name: "nginx", state: "absent" }
+       - { name: "mysql", state: "absent" }
+       - { name: "mysql", state: "absent" }
+

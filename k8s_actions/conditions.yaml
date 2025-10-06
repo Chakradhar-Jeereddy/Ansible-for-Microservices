@@ -1,0 +1,16 @@
+---
+- name: conditions
+  hosts: worker
+  become: yes
+  gather_facts: no
+  vars:
+    num: 10
+  tasks:
+   - block:
+      - name: verify
+        ansible.builtin.debug:
+         msg: "Given number is less than 10"
+        when:  num == 11
+      - name: ping
+        ping:
+        when: num < 11

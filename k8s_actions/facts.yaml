@@ -1,0 +1,20 @@
+---
+- name: ansible facts
+  hosts: worker
+  become: yes
+  gather_facts: yes
+  tasks:
+   - block:
+      - name: get facts
+        ansible.builtin.debug:
+         msg: "{{ ansible_facts }}"
+      - name: get ipv4 address
+        ansible.builtin.debug:
+          msg: "{{ ansible_all_ipv4_addresses }}"
+      - name: get destribustion
+        ansible.builtin.debug:
+          msg: "{{ ansible_distribution }}"
+      - name: ping
+        ping:
+        when: ansible_distribution == "RedHat"
+
