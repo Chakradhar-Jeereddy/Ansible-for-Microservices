@@ -1,0 +1,51 @@
+---
+- name: functions
+  hosts: localhost
+  gather_facts: no
+  vars:
+    string: devops, k8s, grafana, ansible #This is string
+    tags:
+      Application: payment
+      Environment: dev
+    cluster:
+      - key: north
+        value: kube1
+      - key: south
+        value: kube2
+    name: chAkrai
+    address: 172.198.44.2113121
+  tasks:
+    - name: default variables #Default function is used when variable not defined.
+      debug:
+        msg: "name is {{ name | default('chakra')}}"
+
+    - name: conversion from string to list using split function
+      debug:
+        msg: "Technologies are: {{ string | split (',') }}"
+
+    - name: Conversion from dict to list
+      debug:
+        msg: "Tags are: {{ tags|dict2items }}"
+
+    - name: convert list to dict
+      debug:
+        msg: "clusters are: {{ cluster | items2dict }}"
+
+    - name: read yaml file and take it into varaiable
+      ansible.builtin.set_fact:
+        students: "{{ lookup('file','loops.yaml') | from_yaml }}"
+      
+    - name: convert students variable to json and copy to file
+      copy:
+        content: "{{ students| to_nice_json }}"
+        dest: student.json
+      changed_when: false
+
+    - name: convert case to upper or lower
+      debug:
+        msg: "case is lower: {{ name | lower }} and case is upper: {{ name | upper }} and title is {{ name | title }}"
+
+    - name: validate IP address
+      debug:
+        msg: "{{ address | ansible.builtin.ipv4 }}"
+
