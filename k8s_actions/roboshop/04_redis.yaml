@@ -1,0 +1,38 @@
+---
+- hosts: redis
+  gather_facts: no
+  become: yes
+  tasks:
+   - name: disable default module
+     command: dnf module disable redis -y
+
+   - name: enable module redis
+     command: dnf module enable redis:7 -y
+   
+   - name: install redis
+     dnf:
+      name: redis
+      state: present
+
+   - name: update ip in redis.conf
+     replace:
+       path: /etc/redis/redis.conf
+       regexp: "127.0.0.1"
+       replace: "0.0.0.0"
+       backup: yes
+
+   - name: Disable Redis protected mode
+     lineinfile:
+        path: /etc/redis/redis.conf
+        regexp: '^protected-mode yes'
+        line: 'protected-mode no'
+        backup: yes # Creates a backup of the original file before modification
+
+   - name: restart redis
+     service:
+       name: redis
+       enabled: yes
+       state: restarted
+
+
+

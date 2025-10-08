@@ -1,0 +1,46 @@
+---
+# Create instance and update route53 with record A
+# Require python library Python library (botocore and boto3)
+# pip3.9 install botocore boto3
+- name: EC2 instance
+  hosts: localhost
+  vars:
+    type: t3.micro
+    image: ami-09c813fb71547fc4f
+    sg: sg-035d20b8228c4dd3e
+    subnet: subnet-085af97d942d39e23
+    zoneid: "Z01570372XTUEJNI70A9H"
+    domain: "chakra86.shop"
+    instances:
+      - rabbitmq
+  tasks: 
+  - name: Create EC2 instance
+    amazon.aws.ec2_instance:
+      state: present
+      name: "{{ item }}"
+      vpc_subnet_id: "{{ subnet }}"
+      instance_type: "{{ type }}"
+      image_id: "{{ image }}"
+      security_group: "{{ sg }}"
+      tags:
+        name: "{{ item }}"
+    loop: "{{ instances }}"
+    register: ec2_output
+
+  
+  - name: create route53 record
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain }}"
+      record: "{{ item.item }}.{{ domain }}"
+      hosted_zone_id: "{{ zoneid }}"
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}"
+      overwrite: true
+    loop: "{{ ec2_output.results }}"
+
+
+
+
+
