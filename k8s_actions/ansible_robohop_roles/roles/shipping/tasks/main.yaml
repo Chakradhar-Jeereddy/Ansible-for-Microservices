@@ -3,6 +3,16 @@
     name: common
     tasks_from: app-setup.yaml
 
+- name: install java
+  import_role:
+    name: common
+    tasks_from: java.yaml
+
+- name: download dependencies
+  command: mvn clean package
+  args:
+       chdir: /app
+
 - name: rename jar file
   command: mv "target/{{ component }}-{{ version }}.jar shipping.jar"
   args:
