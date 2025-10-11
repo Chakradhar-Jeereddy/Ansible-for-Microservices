@@ -29,7 +29,7 @@
       dest: /app/
       remote_src: yes
      
-   - name: delete the {{ component }} zip filw
+   - name: delete the {{ component }} zip file
      file:
        path: /app/{{ component }}-v3.zip
        state: absent
