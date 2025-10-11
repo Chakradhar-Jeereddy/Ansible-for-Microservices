@@ -5,7 +5,7 @@
 
 - name: rename jar file
   command: mv "target/{{ component }}-{{ version }}.jar shipping.jar"
-    args:
+  args:
       chdir: /app
    
 - name: delete the shipping zip file
