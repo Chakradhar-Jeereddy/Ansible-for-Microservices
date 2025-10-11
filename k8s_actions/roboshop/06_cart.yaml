@@ -1,5 +1,5 @@
 ---
-- hosts: catalogue
+- hosts: cart
   gather_facts: no
   become: yes
   tasks:
@@ -25,9 +25,10 @@
         state: present
    
    - name: delete app directory
-     file: 
+     find: 
        path: /app
-       state: absent
+       patterns: '*'
+       recurse: yes
 
    - name: create app directory
      file:
@@ -36,51 +37,32 @@
    
    - name: download app code
      get_url:
-       url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
-       dest: /app/catalogue-v3.zip
+       url: https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip
+       dest: /app/cart-v3.zip
 
    - name: unzip the app code
      unarchive:
-      src: /app/catalogue-v3.zip
+      src: /app/cart-v3.zip
       dest: /app/
       remote_src: yes
      
-   - name: delete the catalogue zip filw
+   - name: delete the cart zip file
      file:
-       path: /app/catalogue-v3.zip
+       path: /app/cart-v3.zip
        state: absent
    
    - name: install dependencies
      community.general.npm:
       path: /app
 
-   - name: copy catalogue service file
+   - name: copy cart service file
      copy:
-       src: catalogue.service
-       dest: /etc/systemd/system/catalogue.service
+       src: cart.service
+       dest: /etc/systemd/system/cart.service
 
-   - name: copy repo of mongodb
-     copy:
-       src: mongodb.repo
-       dest: /etc/yum.repos.d/mongo.repo
-
-   - name: install mongodb client
-     package:
-       name: mongodb-mongosh
-       state: present
-
-
-   - name: connnect to mongodb catalogue
-     ansible.builtin.command: mongosh mongodb.chakra86.shop --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
-     register: catalogue_output
-
-   - name: load products into mongodb
-     ansible.builtin.shell: mongosh --host mongodb.chakra86.shop </app/db/master-data.js
-     when: catalogue_output.stdout | int < 0
-
-   - name: start catalogue service
+   - name: start cart service
      service:
-       name: catalogue
+       name: cart
        enabled: yes
        daemon_reload: yes
        state: started

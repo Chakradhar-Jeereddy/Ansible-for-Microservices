@@ -1,0 +1,93 @@
+---
+- hosts: shipping
+  gather_facts: no
+  become: yes
+  tasks:
+   - name: install maven
+     dnf:
+      name: "{{ item }}"
+      state: present
+     loop: 
+       - maven
+       - mysql
+   
+   - name: install python dependencies
+     pip:
+       executable: pip3.9
+       name: "{{ item }}"
+     loop:
+       - PyMySQL
+       - cryptography
+
+   - name: Create 'roboshop' with no login shell
+     ansible.builtin.user:
+        name: roboshop
+        comment: "roboshop system user"
+        shell: /sbin/nologin #  /sbin/nologin
+        create_home: true # Create a home directory for the user
+        home: /app
+        system: true
+        state: present
+   
+   - name: delete app directory
+     find: 
+       path: /app
+       patterns: '*'
+       recurse: yes
+
+   - name: download app code
+     get_url:
+       url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
+       dest: /app/shipping.zip
+   
+   - name: unzip the app code
+     unarchive:
+      src: /app/shipping.zip
+      dest: /app/
+      remote_src: yes
+   
+   - name: download dependencies
+     command: mvn clean package
+     args:
+       chdir: /app
+   
+   - name: rename jar file
+     command: mv target/shipping-1.0.jar shipping.jar
+     args:
+       chdir: /app
+   
+   - name: delete the shipping zip file
+     file:
+       path: /app/shipping-v3.zip
+       state: absent
+   
+   - name: copy shipping service file
+     copy:
+       src: shipping.service
+       dest: /etc/systemd/system/shipping.service
+
+   - name: start shipping service
+     service:
+       name: shipping
+       enabled: yes
+       daemon_reload: yes
+       state: started
+
+   - name: import shipping data into mysql
+     community.mysql.mysql_db:
+       name: all
+       state: import
+       login_user: root
+       login_password: RoboShop@1
+       login_host: mysql.chakra86.shop
+       target: "{{ item }}"
+     loop:
+         - /app/db/schema.sql
+         - /app/db/app-user.sql
+         - /app/db/master-data.sql
+
+   - name: restart shipping
+     service:
+        name: shipping
+        state: restarted
+

@@ -1,0 +1,51 @@
+---
+- hosts: user
+  gather_facts: no
+  become: yes
+  tasks:
+   - name: disable inbuilt nodejs
+     command: dnf module disable nodejs -y
+  
+   - name: enable nodejs20
+     command: dnf module enable nodejs:20 -y
+
+   - name: install nodejs
+     package:
+       name: nodejs
+       state: present
+
+   - name: add user   
+     ansible.builtin.user:
+      name: roboshop
+      shell: /sbin/nologin
+      comment: "roboshop system user"
+      home: /app
+      system: true
+
+   - name: download the application binaries
+     get_url:
+       url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
+       dest: /app/user-v3.zip
+   
+   - name: Unzip the file
+     unarchive:
+       src: /app/user-v3.zip
+       dest: /app
+       remote_src: yes
+   
+   - name: install dependencies
+     community.general.npm:
+       path: /app
+      
+   - name: copy the user rep   
+     copy:
+       src: user.service
+       dest: /etc/systemd/system/user.service
+
+   - name: start service and reload daemon
+     systemd_service:
+       name: user
+       state: started
+       daemon_reload: yes
+       enabled: yes
+
