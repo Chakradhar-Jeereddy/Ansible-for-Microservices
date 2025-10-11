@@ -14,7 +14,7 @@
        chdir: /app
 
 - name: rename jar file
-  command: mv "target/{{ component }}-{{ version }}.jar shipping.jar"
+  command: mv target/{{ component }}-{{ version }}.jar shipping.jar
   args:
       chdir: /app
    
@@ -26,7 +26,7 @@
 - name: copy {{ component }} service file
   template:
        src: "{{ component }}.service.j2"
-       dest: /etc/systemd/system/{{ shipping }}.service
+       dest: /etc/systemd/system/{{ component }}.service
   notify: daemon reload
 
 
