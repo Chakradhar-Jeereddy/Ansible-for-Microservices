@@ -3,3 +3,7 @@
     name: common
     tasks_from: app-setup.yaml
 
+- name: setup nodejs
+  import_role:
+    name: common
+    tasks_from: nodejs.yaml

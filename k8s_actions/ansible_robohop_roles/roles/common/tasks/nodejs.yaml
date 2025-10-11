@@ -1,0 +1,14 @@
+   - name: disable default module
+     command: dnf module disable nodejs -y
+
+   - name: enable module nodejs20
+     command: dnf module enable nodejs:20 -y
+   
+   - name: install nodejs
+     package:
+      name: nodejs
+      state: present
+       
+   - name: install dependencies
+     community.general.npm:
+      path: /app
