@@ -1,4 +1,4 @@
-- name: "setup {{ component }} server"
+- name: setup {{ component }} server
   import_role:
     name: common
     tasks_from: app-setup.yaml
@@ -8,9 +8,9 @@
     name: common
     tasks_from: nodejs.yaml
 
-- name: copy catalogue service file
+- name: copy {{ component }} service file
   template:
-       src: catalogue.service.j2
+       src: "{{ component }}.service.j2"
        dest: /etc/systemd/system/catalogue.service
   notify: daemon reload
 
@@ -32,7 +32,7 @@
          #  ansible.builtin.shell: mongosh --host mongodb.chakra86.shop </app/db/master-data.js
          #  when: catalogue_output.stdout | int < 0
 
-- name: "Start {{ component }} service"
+- name: Start {{ component }} service
   import_role:
     name: common
     tasks_from: systemd_service.yaml
