@@ -79,43 +79,8 @@
      when: catalogue_output.stdout | int < 0
 
    - name: start catalogue service
-     service:
+     systemd_service:
        name: catalogue
-       enabled: yes
-       daemon_reload: yes
-       state: started
-
-   - name: install dependencies
-     community.general.npm:
-      path: /app
-
-   - name: copy {{ component }} service file
-     copy:
-       src: {{ component }}.service
-       dest: /etc/systemd/system/{{ component }}.service
-
-   - name: copy repo of mongodb
-     copy:
-       src: mongodb.repo
-       dest: /etc/yum.repos.d/mongo.repo
-
-   - name: install mongodb client
-     package:
-       name: mongodb-mongosh
-       state: present
-
-
-   - name: connnect to mongodb {{ component }}
-     ansible.builtin.command: mongosh mongodb.chakra86.shop --quiet --eval "db.getMongo().getDBNames().indexOf('{{ component }}')"
-     register: {{ component }}_output
-
-   - name: load products into mongodb
-     ansible.builtin.shell: mongosh --host mongodb.chakra86.shop </app/db/master-data.js
-     when: {{ component }}_output.stdout | int < 0
-
-   - name: start {{ component }} service
-     service:
-       name: "{{ component }}"
        enabled: yes
        daemon_reload: yes
        state: started
