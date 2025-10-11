@@ -12,11 +12,6 @@
     zoneid: "Z01570372XTUEJNI70A9H"
     domain: "chakra86.shop"
     instances:
-      - mysql
-      - payment
-      - shipping
-      - cart
-      - mongodb
       - redis
       - rabitmq
       - frontend
