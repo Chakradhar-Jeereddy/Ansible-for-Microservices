@@ -5,14 +5,14 @@ Description=Payment Service
 User=root
 WorkingDirectory=/app
 // highlight-start
-Environment=CART_HOST="{{ cart_host }}"
+Environment=CART_HOST={{ cart_host }}
 Environment=CART_PORT=8080
-Environment=USER_HOST="{{ user_host }}"
+Environment=USER_HOST={{ user_host }}
 Environment=USER_PORT=8080
-Environment=AMQP_HOST="{{ rabitmq_host }}"
+Environment=AMQP_HOST={{ rabitmq_host }}
 // highlight-end
-Environment=AMQP_USER="{{ username }}"
-Environment=AMQP_PASS="{{ password }}"
+Environment=AMQP_USER={{ username }}
+Environment=AMQP_PASS={{ password }}
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID
