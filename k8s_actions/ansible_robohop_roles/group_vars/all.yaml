@@ -2,3 +2,9 @@ mongodb_host: mongodb.chakra86.shop
 redis_host: redis.chakra86.shop
 catalogue_host: catalogue.chakra86.shop
 mysql_host: mysql.chakra86.shop
+frontend_host: frontend.chakra86.shop
+rabitmq_host: rabitmq.chakra86.shop
+cart_host: cart.chakra86.shop
+payment_host: payment.chakra86.shop
+shipping_host: shipping.chakra86.shop
+user_host: user.chakra86.shop
