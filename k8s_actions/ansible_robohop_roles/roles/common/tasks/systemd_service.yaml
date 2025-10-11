@@ -1,6 +1,5 @@
    - name: "start {{ component}} service"
-     systemd_service:
+     service:
        name: "{{ component }}"
        enabled: yes
-       daemon_reload: yes
        state: started
