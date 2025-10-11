@@ -1,6 +1,0 @@
----
-- hosts: "{{ component }}"
-  gather_facts: no
-  become: yes
-  roles:
-   - "{{ component }}"
