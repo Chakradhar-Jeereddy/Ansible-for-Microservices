@@ -12,7 +12,14 @@
     zoneid: "Z01570372XTUEJNI70A9H"
     domain: "chakra86.shop"
     instances:
-      - user
+      - mysql
+      - payment
+      - shipping
+      - cart
+      - mongodb
+      - redis
+      - rabitmq
+      - frontend
   tasks: 
   - name: Create EC2 instance
     amazon.aws.ec2_instance:
