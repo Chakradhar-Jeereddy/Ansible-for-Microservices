@@ -1,0 +1,44 @@
+- name: setup {{ component }} server
+  import_role:
+    name: common
+    tasks_from: app-setup.yaml
+
+- name: rename jar file
+  command: mv "target/{{ component }}-{{ version }}.jar shipping.jar"
+    args:
+      chdir: /app
+   
+- name: delete the shipping zip file
+  file:
+      path: "/app/{{ component }}-v3.zip"
+      state: absent
+
+- name: copy {{ component }} service file
+  template:
+       src: "{{ component }}.service.j2"
+       dest: /etc/systemd/system/catalogue.service
+  notify: daemon reload
+
+
+- name: Start {{ component }} service
+  import_role:
+    name: common
+    tasks_from: systemd_service.yaml
+
+- name: import {{ component }} data into mysql
+  community.mysql.mysql_db:
+       name: all
+       state: import
+       login_user: "{{ user }}"
+       login_password: "{{ password }}"
+       login_host: "{{ mysql_host }}"
+       target: "{{ item }}"
+  loop:
+         - /app/db/schema.sql
+         - /app/db/app-user.sql
+         - /app/db/master-data.sql
+
+- name: Start {{ component }} service
+  import_role:
+    name: common
+    tasks_from: systemd_service.yaml

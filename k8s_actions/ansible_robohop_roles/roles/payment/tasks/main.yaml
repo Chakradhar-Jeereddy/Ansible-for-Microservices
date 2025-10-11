@@ -1,0 +1,33 @@
+- name: install python packages
+    ansible.builtin.dnf:
+      name: "{{ item }}"
+      state: present
+    loop:
+    - python3 
+    - gcc 
+    - python3-devel
+    
+- name: setup {{ component }} server
+  import_role:
+    name: common
+    tasks_from: app-setup.yaml
+
+- name: install python libraries
+  ansible.builtin.pip:
+    executable: pip3.9
+    requirements: requirements.txt
+    args:
+      chdir: /app
+
+- name: copy {{ component }} service file
+  template:
+       src: "{{ component }}.service.j2"
+       dest: /etc/systemd/system/catalogue.service
+  notify: daemon reload
+
+
+- name: Start {{ component }} service
+  import_role:
+    name: common
+    tasks_from: systemd_service.yaml
+

@@ -1,0 +1,15 @@
+   - name: install maven
+     dnf:
+      name: "{{ item }}"
+      state: present
+     loop: 
+       - maven
+       - mysql
+   
+   - name: install python dependencies
+     pip:
+       executable: pip3.9
+       name: "{{ item }}"
+     loop:
+       - PyMySQL
+       - cryptography
