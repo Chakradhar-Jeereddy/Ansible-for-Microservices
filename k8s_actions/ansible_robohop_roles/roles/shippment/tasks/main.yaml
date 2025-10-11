@@ -16,7 +16,7 @@
 - name: copy {{ component }} service file
   template:
        src: "{{ component }}.service.j2"
-       dest: /etc/systemd/system/catalogue.service
+       dest: /etc/systemd/system/{{ shipping }}.service
   notify: daemon reload
 
 
