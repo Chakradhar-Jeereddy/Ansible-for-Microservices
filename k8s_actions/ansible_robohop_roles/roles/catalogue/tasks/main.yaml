@@ -8,10 +8,6 @@
     name: common
     tasks_from: nodejs.yaml
 
-- name: install dependencies
-  community.general.npm:
-      path: /app
-
 - name: copy catalogue service file
   copy:
        src: catalogue.service
@@ -28,15 +24,15 @@
        name: mongodb-mongosh
        state: present
 
-- name: connnect to mongodb catalogue
-  ansible.builtin.command: mongosh mongodb.chakra86.shop --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
-     register: catalogue_output
+         #- name: connnect to mongodb catalogue
+         #ansible.builtin.command: mongosh mongodb.chakra86.shop --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
+         #register: catalogue_output
 
-- name: load products into mongodb
-  ansible.builtin.shell: mongosh --host mongodb.chakra86.shop </app/db/master-data.js
-     when: catalogue_output.stdout | int < 0
+         #- name: load products into mongodb
+         #  ansible.builtin.shell: mongosh --host mongodb.chakra86.shop </app/db/master-data.js
+         #  when: catalogue_output.stdout | int < 0
 
 - name: "Start {{ component }} service"
-  import_roles:
+  import_role:
     name: common
     tasks_from: systemd_service.yaml
