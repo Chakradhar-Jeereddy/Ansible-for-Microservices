@@ -1,0 +1,35 @@
+   - name: Create 'roboshop' with no login shell
+     ansible.builtin.user:
+        name: roboshop
+        comment: "roboshop system user"
+        shell: /sbin/nologin #  /sbin/nologin
+        create_home: true # Create a home directory for the user
+        home: /app
+        system: true
+        state: present
+   
+   - name: delete app directory
+     file: 
+       path: /app
+       state: absent
+
+   - name: create app directory
+     file:
+       state: directory
+       path: /app
+   
+   - name: download app code
+     get_url:
+       url: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v3.zip
+       dest: /app/{{ component }}-v3.zip
+
+   - name: unzip the app code
+     unarchive:
+      src: /app/{{ component }}-v3.zip
+      dest: /app/
+      remote_src: yes
+     
+   - name: delete the {{ component }} zip filw
+     file:
+       path: /app/{{ component }}-v3.zip
+       state: absent
