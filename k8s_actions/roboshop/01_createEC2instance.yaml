@@ -12,7 +12,7 @@
     zoneid: "Z01570372XTUEJNI70A9H"
     domain: "chakra86.shop"
     instances:
-      - catalogue
+      - user
   tasks: 
   - name: Create EC2 instance
     amazon.aws.ec2_instance:
