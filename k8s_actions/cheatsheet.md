@@ -135,12 +135,14 @@ loops
 
 functions
 ===========
-taking input and providing the output, execute whenever we call
-
+taking input and providing the output (input pipe output), execute whenever we call
 functions == filters
 we can write functions but we need to write python code..
-
 we can use default in built functions from ansible
+Fuctions can be used for
+1) type conversion (items2dict) (dict2items), sting to list using split function and to into using int function
+2) case conrvertion (upper,lower)
+3) ip address validation
 
 DevOps, Linux, Shell, Ansible -> String
 ,
