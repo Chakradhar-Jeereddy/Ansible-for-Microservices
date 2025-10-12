@@ -301,6 +301,22 @@ AWS is a platform
 hashicorp vault
 
 store key inside the server
+
+Forks
+=============
+global paramete, applies to all roles and tasks
+``` 
+ansible-playbook site.yaml --forks 50
+(or)
+[defaults]
+forks = 50
+
+Resource usage: Increasing forks allows for faster execution on a large number of hosts but consumes more resources (CPU and memory) on the Ansible control node.
+                Adjust the value based on your control node's capacity.
+Target host count: If the number of target hosts is less than the forks value, Ansible will only use as many forks as there are hosts.
+Performance vs. Stability: While higher forks can improve performance, excessively high values can lead to resource exhaustion and instability.
+SSH Optimization: For large-scale deployments, consider enabling SSH optimization features like ControlMaster
+                  and ControlPersist in ansible.cfg to reduce SSH connection overhead, especially when using roles with numerous tasks.
 ######################################################
 
 My notes
