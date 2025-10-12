@@ -354,7 +354,7 @@ plugin -> connects to another system and fetches required information
 Use aws plugin to fetch inventory information
 the filename should be with extension aws_ec2.yaml
 the file is plugin.aws_ec2.yaml
-
+```
 ansible-inventory -i plugin.aws_ec2.yaml --graph
 @all:
   |--@ungrouped:
@@ -363,7 +363,7 @@ ansible-inventory -i plugin.aws_ec2.yaml --graph
   |  |--172.31.16.246
   |  |--172.31.24.127
   |  |--172.31.21.227
-
+```
 
 Secrets
 =================
