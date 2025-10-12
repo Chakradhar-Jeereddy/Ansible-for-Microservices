@@ -1,0 +1,8 @@
+- hosts: localhost
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: include
+      include_role:
+        name=common
+        tasks_from=import.yaml

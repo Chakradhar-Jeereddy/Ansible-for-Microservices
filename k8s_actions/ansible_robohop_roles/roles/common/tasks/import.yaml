@@ -1,0 +1,7 @@
+- name: testing imoprt vs include
+  debug:
+    msg: "hello"
+
+- name: sample test
+debug:
+    msg: "yes"

@@ -1,5 +1,5 @@
 ---
-- hosts: worker
+- hosts: localhost
   become: yes
   gather_facts: no
   tasks:
@@ -11,6 +11,7 @@
        - nginx                                                                                         
        - mysql                                                                                         
        - httpd   
+     tags: install
 
    - name: remove {{ item.name }}
      package:
@@ -20,4 +21,5 @@
        - { name: "nginx", state: "absent" }
        - { name: "mysql", state: "absent" }
        - { name: "mysql", state: "absent" }
+     tags: remove
 
