@@ -8,4 +8,4 @@ jobs:
    - name: my name
      run: echo "chakradhar"
    - name: my job
-     run: echo "socgen"
+     run: sleep 100
