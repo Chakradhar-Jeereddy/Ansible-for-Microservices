@@ -1,0 +1,11 @@
+name: my workflow
+
+on: workflow_dispatch
+jobs:
+ first:
+   runs-on: ubuntu-latest
+   steps:
+   - name: my name
+     run: echo "chakradhar"
+   - name: my job
+     run: echo "socgen"
