@@ -1,0 +1,8 @@
+name: myname   #name of the workflow, the wrokflow needs events to trigger
+on: workflow_dispatch   # Indicates that the workflow is manually triggered
+jobs:
+  first-job:         # this is user defined, we can give any name to the job.
+   runs-on: ubuntu-latest
+   steps:
+    - name: myname
+      run: echo "chakradhar"
