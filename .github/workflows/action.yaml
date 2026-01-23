@@ -5,4 +5,7 @@ jobs:
    runs-on: ubuntu-latest
    steps:
     - name: myname
-      run: echo "chakradhar"
+      run: |
+            echo "chakradhar"
+            echo "greetings"
+      
